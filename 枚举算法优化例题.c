@@ -46,3 +46,4 @@ int check(float mid, float *L)
     }
     return sum >= k ? 1 : 0;
 }
+
