@@ -10,9 +10,7 @@ typedef struct DNode
 void CreatListF(Link *L, int n);             //头插法
 void CreatListR(Link *L, int n);             //尾插法
 bool ListInsert(DLinkList *L, int i, int e); //插入
-int main()
-{
-}
+bool ListDelete(Link *L, int i, int *e);     //删除
 void CreatListF(Link *L, int n)
 {
     DLinkList *s;
