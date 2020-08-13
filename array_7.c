@@ -29,7 +29,7 @@ int MaxSubseqSum(int *nums, int numsSize)
         }
         return Maxsum;
 }
-//思路2:穷举，算法复杂度为O(numsSize^2)
+//思路2:穷举，算法复杂度为O(n^2)
 int maxSubArray(int *nums, int numsSize)
 {
         int Thissum = nums[0], sum, i, j;
