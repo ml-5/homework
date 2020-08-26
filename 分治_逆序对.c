@@ -9,4 +9,58 @@
 样例输出：
 4
 **/
+/*
+1） 如果𝐴1 𝑖 > 𝐴2 𝑗 ，则有：
+𝐴1 𝑖 + 1 > 𝐴2 𝑗 ；
+……
+𝐴1 (𝑙 + 𝑟)/2 > 𝐴2 𝑗 ；
+一次比较可以推导出多个逆序对
+2）如果𝐴1 𝑖 ≤ 𝐴2 𝑗 ，则有：
+𝐴1 𝑖 ≤ 𝐴2 𝑗 + 1 ；
+……
+𝐴1 𝑖 ≤ 𝐴2 𝑟 ；
+97 13 40 76 A2
+一次比较可以省略多次比较
+38 > 13 {49, 65, 97} > 13 增加4个逆序对
+38 < 40 38 < {76} 38不会再与A2中元素产生逆序对
+49 > 40 {65, 97} > 40 增加3个逆序对
+49 < 76 49不会再与A2中元素产生逆序对
+65 < 76 65不会再与A2中元素产生逆序对
+97 > 76 增加1个逆序对
+*/
+long MergeReverse(int Datas[], int Buffer[], int Low, int Mid, int High)
+{
+    int i = Low, j = Mid + 1, k = Mid;
+    long c;
+    while (i <= Mid && j <= High)
+    {
+        if (Datas[i] <= Datas[j])
+            Buffer[k++] = Datas[i++];
+        else
+        {
+            c += Mid - i + 1;
+            Buffer[k++] = Datas[j++];
+        }
+    }
+    if (i <= Mid)
+        for (int ii = i; i <= Mid; ii++)
+            Buffer[k++] = Datas[ii];
+    else
+        for (int jj = j; jj <= High; jj++)
+            Buffer[k++] = Datas[jj];
+    return c;
+}
 
+long ReveseOrder(int Datas[], int Buffer[], int Low, int High)
+{
+    if (Low = High)
+        return 0;
+    int Mid = (Low + High) / 2;
+    long c1, c2, c3;
+    c1 = ReveseOrder(Datas, Buffer, Low, Mid);
+    c2 = ReveseOrder(Datas, Buffer, Mid + 1, High);
+    c3 = MergeReverse(Datas, Buffer, Low, Mid, High);
+    for (int i = Low; i <= High; i++)
+        Datas[i] = Buffer[i];
+    return c1 + c2 + c3;
+}
