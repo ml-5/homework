@@ -24,37 +24,23 @@ int main()
 {
     int e;
     SqList *LA, *LB, *LC = (SqList *)malloc(sizeof(SqList));
-    CreatList(&LA, 4); //建立LA表
-    GetElem(LA, LocateElem(LA, 6) - 1, &e);
-    printf("6的前驱是:%d\n", e);
+    CreatList(&LA, 12); //建立LA表
+    GetElem(LA, LocateElem(LA, 5), &e);
+    printf("第5个是:%d\n", e);
+    printf("5在表中的位置i\n", LocateElem(LA, 5));
     printf("遍历LA\n");
     DispList(LA);
     CreatList(&LB, 5); //建立LB表
-    GetElem(LB, LocateElem(LB, 8) + 1, &e);
-    printf("8的后继是:%d\n", e);
-       printf("遍历LB\n");
+    printf("遍历LB\n");
     DispList(LB);          //遍历LB
     ListDelete(LB, 2, &e); //删除LB的第二个元素
     printf("删除LB的第二个元素是:%d\n", e);
-        printf("遍历LB\n");
-    DispList(LB);  //遍历LB
-    Union(LA, LB); //并集运算
-       printf("遍历LA\n");
-    DispList(LA);
-    InitList(LA); //LA置为空表
-    InitList(LB); //LB置为空表
-    DestroyList(LA);
-    DestroyList(LB);
-    CreatList(&LA, 5); //建立LA表
-    CreatList(&LB, 7); //建立LB
-      printf("遍历LA\n");
-    DispList(LA);
-       printf("遍历LB\n");
-    DispList(LB);
+    printf("遍历LB\n");
+    DispList(LB);          //遍历LB
     UnionList(LA, LB, LC); //二路归并
-     printf("遍历LC\n");
-    DispList(LC);          //遍历LC
-    DestroyList(LA);//销毁LA,LB,LC
+    printf("遍历LC\n");
+    DispList(LC);    //遍历LC
+    DestroyList(LA); //销毁LA,LB,LC
     DestroyList(LB);
     DestroyList(LC);
 }
@@ -73,7 +59,6 @@ void InitList(SqList *L)
 void DestroyList(SqList *L)
 {
     free(L);
-  
 }
 int ListEmpty(SqList *L)
 {
@@ -138,19 +123,10 @@ bool ListDelete(SqList *L, int i, ElemType *e)
     }
     L->length--;
 }
-void Union(SqList *L1, SqList *L2)
-{
-    int la_len = ListLength(L1), lb_len = ListLength(L2), i, e;
-    for (i = 0; i < lb_len; i++)
-    {
-        GetElem(L2, i, &e);
-        if (!LocateElem(L1, e))
-            ListInsert(L1, la_len++, e);
-    }
-}
+
 void UnionList(SqList *LA, SqList *LB, SqList *LC)
 {
-    int i = 0, j = 0, k = 0;               //i、j分别为LA、LB的下标,k为LC中元素个数
+    int i = 0, j = 0, k = 0; //i、j分别为LA、LB的下标,k为LC中元素个数
     while (i < LA->length && j < LB->length)
     {
         if (LA->data[i] < LB->data[j])

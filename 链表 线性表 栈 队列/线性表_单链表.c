@@ -26,20 +26,24 @@ bool ListInsert(LinkList **L, int i, int e);  //插入数据元素
 bool LiseDelete(LinkList **L, int i, int *e); //删除元素
 int main()
 {
-    LinkList *head;
+    LinkList *head, *w_head;
     int e;
-    HCreatList(&head,6);
-    printf("链表为空:%d   链表元素个数:%d\n",ListEmpty(&head),ListLength(&head));
-    printf("输出:\n");
-    DispList(&head);
-    GetElem(&head,3,&e);
-    printf("第3个位置的元素:%d  元素2的位置:%d",e,LocateElem(&head,2));
-    ListInsert(&head,4,10);
-    DispList(&head);
-    LiseDelete(&head,4,&e);
-    printf("%d",e);
-    DispList(&head);
+    HCreatList(&head, 6);
+    ECreatList(&w_head, 6);
+    printf("输出头插法 尾插法:\n");
+    DispList(head);
+    DispList(w_head);
+    GetElem(&head, 3, &e);
+    printf("第3个位置的元素:%d  元素2的位置:%d", e, LocateElem(&head, 2));
+    ListInsert(head, 4, 10);
+    printf("插入后元素\n");
+    DispList(head);
+    LiseDelete(head, 4, &e);
+    printf("%d", e);
+    printf("删除后的元素\n");
+    DispList(head);
     DestroyList(&head);
+    DestroyList(&w_head);
 }
 void HCreatList(LinkList **L, int n)
 {
@@ -60,7 +64,8 @@ void ECreatList(LinkList **L, int n)
     LinkList *s, *r;
     int i;
     (*L) = (LinkList *)malloc(sizeof(LinkList)); //创建头结点
-    r = (*L);
+    (*L)->next=NULL;
+    r = (*L)->next;
     for (i = 0; i < n; i++) //循环建立数据节点
     {
         s = (LinkList *)malloc(sizeof(LinkList));
@@ -86,10 +91,11 @@ void DestroyList(LinkList **L)
     free(pre); //循环结束，p为NULL，pre指向尾结点,释放它
 }
 bool ListEmpty(LinkList **L)
-{   if((*L)->next==NULL)
-    return 1;
+{
+    if ((*L)->next == NULL)
+        return 1;
     else
-    return 0;
+        return 0;
 }
 int ListLength(LinkList **L)
 {
@@ -176,12 +182,12 @@ bool LiseDelete(LinkList **L, int i, int *e)
         return false;
     else
     {
-        q=p->next;//q指向第i个节点
-        if(q==NULL) //若不存在第i个节点返回false
-        return false;
-        *e=q->data;
-        p->next=q->next;//从单链表中删除*q节点
+        q = p->next;   //q指向第i个节点
+        if (q == NULL) //若不存在第i个节点返回false
+            return false;
+        *e = q->data;
+        p->next = q->next; //从单链表中删除*q节点
         free(q);
-        return true;//返回true表示成功删除第i个节点
+        return true; //返回true表示成功删除第i个节点
     }
 }
