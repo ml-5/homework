@@ -26,10 +26,9 @@ int f(int m, int n)
 {
     if (n > m) //盘子数大于苹果数
         return f(m, m);
-    if (m == 0) //苹果数为0
+    if (m == 0 || n == 1) //苹果数为0
         return 1;
-    if (n <= 0) //盘子数为0
-        return 0;
+
     return f(m, n - 1) + f(m - n, n);
 }
 int main()
