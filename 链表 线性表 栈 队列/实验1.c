@@ -18,7 +18,7 @@ bool GetElem(SqList *L, int i, ElemType *e);        //返回第i个位置的元�
 int LocateElem(SqList *L, ElemType e);              //判断e值的元素位置
 bool ListInsert(SqList *L, int i, ElemType e);      //插入元素
 bool ListDelete(SqList *L, int i, ElemType *e);     //删除元素
-void Union(SqList *L1, SqList *L2);                 //LAuLB
+void (SqList *L1, SqList *L2);                 //LAuLB
 void UnionList(SqList *LA, SqList *LB, SqList *LC); //二路归并
 int main()
 {
