@@ -78,6 +78,7 @@ void InsList(Linklist L, int i, ElemType e)
         printf("插入的位置不合理！");
         return;
     }
+  
     s = (Node *)malloc(sizeof(Node));
     s->data = e;
     s->next = pre->next;

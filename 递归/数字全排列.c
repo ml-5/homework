@@ -21,8 +21,9 @@ void release(LinkList *L)
 序，为小问题。
 假设小问题已经知道,对于a[K]位置的，可以取a[0~k],在组合
 再组合f(a，n，k-1)，则得到f(a，n，k) 。
-f(a，n，k)  输出a 当k=0时(一个元素的全排列) 
-f(a，n，k)  a[k]位置取a[0..k]任何之值， 
+
+f(a,n,k)  输出a 当k=0时(一个元素的全排列) 
+f(a，n，k)  a[k]位置取a[0..k]任何之值
 其他情况并组合f(a，n，k-1)的结果;
 **/
 #include <stdio.h>
@@ -36,7 +37,7 @@ void swap(int *i, int *j)
 void perm(int a[], int n, int k)
 {
     int i, j;
-    if (k == 0)
+    if (k == 0)//结束条件 K=0即一个元素的全排列
     {
         for (j = 0; j < n; j++)
             printf("%d", a[j]);

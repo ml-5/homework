@@ -55,4 +55,5 @@ int main()
     cout << PrintMinNumber(test) << endl;
 
     return 0;
+
 }

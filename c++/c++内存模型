@@ -1,0 +1,4 @@
+1.Stack  //向低地址生长
+2.Heap //向高地址生长
+3.Global/Static
+4.constant

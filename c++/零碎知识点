@@ -1,0 +1,206 @@
+//const_cast用于去除指针的变量属性
+const int *a;
+int *p=a;//报错const int *" 类型的值不能用于初始化 "int *" 类型
+int *pr=consst_cast<int*>(a);//去除指针的常量属性
+
+//reinterpret_cast，翻译下来就是重新解释转型（主要是指针）
+//reinterpret_cast的作用是，不改变指针地址，仅仅是使编译器改变解释属性
+//举个例子：
+int n = 1024;
+int* p = &n;//
+cout << *p;//这里的结果显然会输出：1024；
+//此时我们使用：reinterpret_cast；
+double* pp = reinterpret_cast<double*>(&n);
+cout << *pp;//这里输出的结果将是double类型的值；但是地址指针的地址并未发生改变，仅仅是解释的方法发生了改变
+
+
+5. Named constants (including enumeration values) must be all uppercase using underscore to separate words.
+
+5. 符号常量(包括枚举值)必须全部大写并用下划线分隔单词
+
+
+1.     变量的作用域分类
+ 
+
+a. 全局作用域：全局变量
+b. 局部作用域：局部变量
+ 
+
+局部作用域可以分为：文件作用域、函数作用域以及函数内部的块作用域。
+ 
+
+如果外部代码块与其内嵌代码块有同名的变量，那么会产生同名覆盖这种现象。此时要遵循“就近原则”来判断哪个同名变量起作用
+ 
+
+2.     Unary Scope Resolution (一元作用域解析运算符)
+ 
+
+If a local variable name is the same as a global variable name, you can access the global variable using ::globalVariable. (局部变量名与全局变量名相同时，可使用 :: 访问全局变量)
+ 
+
+The :: operator is known as the unary scope resolution.（:: 这个运算符被称为一元作用域解析运算符）
+ 
+
+例子
+ 
+
+#include <iostream>
+
+int v1 = 10;
+
+int main() {
+
+    int v1 = 5;
+
+    std::cout << "local variable v1 is "  << v1   << std::endl;
+
+    std::cout << "global variable v1 is " << ::v1 << std::endl;
+
+    return 0;
+
+}
+
+ 
+ Inline Function
+ 内联函数
+ 
+
+ 
+
+1. 普通函数的优缺点
+ 
+
+1.1. Pros(优点): 易读易维护 
+ 
+
+1.2. Cons (缺点): 调用时有开销
+ 
+
+函数调用时：参数及部分CPU寄存器的内容进栈，控制流跳转
+
+函数返回时：返回值及寄存器值出栈，控制流跳转
+
+ 
+
+ 
+
+2. 使用内联函数
+ 
+
+目的：减小函数调用开销
+
+方法：代码插入到调用处
+
+结果：导致程序变大
+
+3. 定义内联函数
+定义函数时，在函数类型前面加上 inline 关键字，则该函数就成为内联函数。
+
+一般而言，内联函数的声明和定义都在一起。我们很少将内联函数的声明和定义分开编写。
+
+// 定义内联函数
+
+inline int max (int a, int b) {
+
+    return (a > b ? a : b);
+
+}
+// Calling (调用内联函数)
+int  x = max (3, 5);
+int  y = max (0, 8);
+// Inline expansion(内联展开)
+int  x = (3 > 5 ? 3 : 5);
+int  y = (0 > 8 ? 0 : 8);
+4. 内联函数的使用
+ 
+
+编译器在遇到内联函数的调用时，会将内联函数的函数体展开到调用位置，从而避免函数调用的开销。
+ 
+一般来说，内联函数只有在需要考虑程序运行性能的环境中才使用。
+
+程序员所用的 inline 关键字，只是对编译器的一个请求。内联函数是否展开，是由编译器决定的。
+
+5. 将内联函数的声明和定义分离
+ 
+
+在C++标准7.1.2.4节有如下说明
+
+An inline function shall be defined in every translation unit in which it is odr-used and shall have exactly the same definition in every case (3.2). [ Note: A call to the inline function may be encountered before its definition appears in the translation unit. —end note ]
+
+内联函数应在每个翻译单元中定义。在该翻译单元中它遵循“单一定义规则（ODR）”，并且所有该内联函数定义必须完全相同。[注释：在翻译单元中可能会在内联函数定义出现之前就有调用该内联函数的语句]
+
+
+因此，内联函数声明和定义分类的用法如下：
+#include <iostream>
+
+inline void foo();
+
+int main() {
+
+  foo();
+
+}
+
+inline void foo() {
+
+  std::cout << "Hi\n";
+
+}
+
+
+
+
+
+
+
+Range-based for-loop （基于范围的for循环）
+1.     基于范围的for循环的语法
+ 
+1.1.       语法
+ 
+for( 元素名变量 : 广义集合) { 循环体 }
+
+a.“元素名变量”可以是引用类型，以便直接修改集合元素的值；
+b. “元素名变量”也可以是const类型，避免循环体修改元素的值
+c. 其中“广义集合”就是“Range（范围）”，是一些元素组成的一个整体
+
+1.2.       “广义集合”例子
+
+auto  a1[] { 1, 3, 5, 7 };
+
+std::array<int, 4> a2 { 2, 4, 6, 8};
+
+std::vector< int > v = { 42, 7, 5 };
+
+std::vector< std::string > s { "Hello", "World", "!"};
+2.     用法
+
+想要操作某个广义集合中的所有元素，那么只需要关心
+a. 从集合中取出某个元素
+b. 保证所有元素都被遍历
+
+例：把数组a的元素都输出到屏幕上；然后把数组的元素翻倍
+
+int a[] = { 2,1,4,3,5 };
+
+for (auto i : a) {
+
+    std::cout << i << std::endl;
+
+}
+
+for (auto& i : a) {
+
+    i = 2 * i;
+
+} 
+3.     限制
+基于范围的循环仅限于for语句
+do…while(); 和while(){} 不支持基于范围的循环
+ 
+
+ 
+
+
+
+ 

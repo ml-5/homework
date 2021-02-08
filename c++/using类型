@@ -1,0 +1,47 @@
+Usage of using, typedef, and #define （using, typedef, and #define的用法）
+
+1.using 声明新的类型名称
+
+当我们声明这样一些变量时：
+const unsigned long int * p;
+
+const unsigned long int * q;
+
+const unsigned long int * r;
+
+我们会觉得很麻烦。
+ 
+那有没有一种办法使得 p, q, r的类型声明简便一点呢？
+ 
+我们在C语言里面学了 typedef，它可以声明一个新的类型名。
+ 
+
+typedef const unsigned long int * MyPointer;
+
+MyPointer p;
+
+ 
+
+ 
+
+C++11中为 using 关键字赋予了一个类型声明的新功能
+ 
+
+using ConstPointer = const unsigned long int *;
+
+ConstPointer p;
+
+ConstPointer q;
+
+ConstPointer r;
+
+using的写法比typedef的写法更加直观，所以，我们应尽量使用using声明新类型名。而且当涉及到模版类型名时，只能使用using。
+
+
+2. 编码规范
+ 
+3. Names representing types must be in mixed case starting with upper case.
+
+3. 代表类型的名字必须首字母大写并且其它字母大小写混合
+
+例如：Line, SavingsAccount

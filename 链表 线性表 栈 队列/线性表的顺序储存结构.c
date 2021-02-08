@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #define MaxSize 20
-typedef int ElemType;
+typedef char  ElemType;
 typedef struct
 {
     ElemType data[MaxSize];
@@ -18,8 +18,8 @@ bool GetElem(SqList *L, int i, ElemType *e);        //返回第i个位置的元�
 int LocateElem(SqList *L, ElemType e);              //判断e值的元素位置
 bool ListInsert(SqList *L, int i, ElemType e);      //插入元素
 bool ListDelete(SqList *L, int i, ElemType *e);     //删除元素
-void Union(SqList *L1, SqList *L2);                 //LAuLB
-void UnionList(SqList *LA, SqList *LB, SqList *LC); //二路归并
+/*void Union(SqList *L1, SqList *L2);                 //LAuLB
+void UnionList(SqList *LA, SqList *LB, SqList *LC); //二路归并*/
 int main()
 {
     int e;
@@ -56,7 +56,6 @@ int main()
     DispList(LC);          //遍历LC
     DestroyList(LA);//销毁LA,LB,LC
     DestroyList(LB);
-    DestroyList(LC);
 }
 void CreatList(SqList **L, int n)
 {
@@ -113,7 +112,7 @@ int LocateElem(SqList *L, ElemType e)
     else
         return i + 1;
 }
-bool ListInsert(SqList *L, int i, ElemType e)
+bool ListInsert(SqList *L, int i, ElemType e)//线性表的插入
 {
     int j;
     if (i < 1 || i > L->length + 1)
@@ -124,7 +123,7 @@ bool ListInsert(SqList *L, int i, ElemType e)
     L->length++;
     return true;
 }
-bool ListDelete(SqList *L, int i, ElemType *e)
+bool ListDelete(SqList *L, int i, ElemType *e)//删除
 {
     int j;
     if (i < 1 || i > L->length)

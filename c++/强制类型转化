@@ -1,0 +1,23 @@
+1.     类型转换有两种
+1.1.       隐式类型转换
+1.2.       显式类型转换（即：强制类型转换）
+2.     C风格强制类型转换
+ 
+
+语法：(type) value
+printf("%d", (int) 2.5);
+
+
+
+3.     C++风格强制类型转换c
+语法：static_cast<type> value
+ 
+cout << static_cast<double>(1) / 2;
+
+cout << 1 / 2;
+
+ 
+问题：下面代码的输出是什么？
+cout << static_cast<double>(1 / 2);
+
+类型转换必须显式声明。永远不要依赖隐式类型转换

@@ -1,5 +1,26 @@
 {
     "files.associations": {
-        "1.C": "cpp"
-    }
+        "1.C": "cpp",
+        "vector": "cpp",
+        "algorithm": "cpp",
+        "concepts": "cpp",
+        "deque": "cpp",
+        "exception": "cpp",
+        "ios": "cpp",
+        "istream": "cpp",
+        "memory": "cpp",
+        "ostream": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "streambuf": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "xiosbase": "cpp",
+        "xmemory": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "iostream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

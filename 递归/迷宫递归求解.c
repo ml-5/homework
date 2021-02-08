@@ -60,20 +60,20 @@ void mgpath(int xi, int yi, int xe, int ye, PathType path)
                 switch (di) //找方位di对应的方块(i,j)
                 {
                 case 0:
-                    i = xi - 1;
+                    i = xi+1;
                     j = yi;
                     break;
                 case 1:
-                    i = xi;
-                    j = yi + 1;
+                    i = xi-1;
+                    j = yi;
                     break;
                 case 2:
-                    i = xi + 1;
-                    j = yi;
+                    i = xi;
+                    j = yi-1;
                     break;
                 case 3:
                     i = xi;
-                    j = yi - 1;
+                    j = yi+1;
                     break;
                 }
                 path.data[path.length].i = xi;

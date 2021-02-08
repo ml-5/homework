@@ -165,7 +165,7 @@ double compvalue(char *postexp)
       Push(Opnd, d);
       break;
     }
-    postexp++; //鸡血处理其它字符
+    postexp++; //处理其它字符
   }
   GetTopl(Opnd, e);    //取栈顶元素
   DestroyStackl(Opnd); //销毁栈
