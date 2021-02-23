@@ -35,7 +35,7 @@ int query(char str[])
 {
 
     int p = 0;
-    for (int i = 0; str[]; i++)
+    for (int i = 0; str[i]; i++)
     {
         int u = str[i] - 'a';
         if (!son[p][u])
