@@ -66,7 +66,7 @@ int main()
     }
     vector<int> res;
     res.push_back(1);
-    for (int = 0; i < cnt; i++)
+    for (int i= 0; i < cnt; i++)
     {
         for (int j = 0; j < sum[i]; j++)
             res = mul(res, prime[i]);
