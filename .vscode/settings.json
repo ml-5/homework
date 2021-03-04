@@ -20,7 +20,8 @@
         "xmemory": "cpp",
         "xstring": "cpp",
         "xutility": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "limits": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
