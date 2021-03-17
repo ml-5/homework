@@ -10,11 +10,11 @@ typedef long long LL;
 LL qmi(int a, int b, int p)
 {
     LL res = 1;
-    while (k)
+    while (b)
     {
-        if (k & 1)
+        if (b & 1)
             res = res * a % p;
-        k >>= 1;
+        b >>= 1;
         a = a * a % p;
     }
     return res;
