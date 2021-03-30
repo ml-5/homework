@@ -29,4 +29,5 @@ int main()
     }
     for(int i=c1.size()-1;i>=0;i--)
     cout<<c1[i];
+    substr()
 }
